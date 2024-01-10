@@ -17,6 +17,16 @@ public class FileStorage {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "file_id")
     private UUID id;
+    @Column(name = "file_name")
+    private String fileName;
 
+    @Column(name = "file_url")
+    private String fileUrl;
+
+    @Column(name = "file_type")
+    private String fileType;
+
+    @Column(name = "size")
+    private Long size;
 
 }
