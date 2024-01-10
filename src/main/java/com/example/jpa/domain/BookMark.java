@@ -14,6 +14,6 @@ import java.util.UUID;
 @Table(name = "bookmarks")
 public class BookMark {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 }
