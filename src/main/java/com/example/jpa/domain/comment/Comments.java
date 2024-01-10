@@ -1,5 +1,6 @@
-package com.example.jpa.domain;
+package com.example.jpa.domain.comment;
 
+import com.example.jpa.domain.article.Article;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,11 +15,14 @@ import java.util.UUID;
 @Table(name = "comment")
 public class Comments {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "comment_id")
-    private UUID id;
+    private Long id;
 
     @Column(name = "comment_caption")
     private String caption;
 
+    @ManyToOne
+    @JoinColumn(name = "article_id")
+    private Article article;
 }

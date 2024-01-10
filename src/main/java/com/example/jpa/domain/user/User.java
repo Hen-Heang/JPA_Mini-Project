@@ -1,11 +1,12 @@
-package com.example.jpa.domain;
+package com.example.jpa.domain.user;
 
+import com.example.jpa.domain.bookmark.BookMark;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.UUID;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -14,10 +15,13 @@ import java.util.UUID;
 @Table(name = "users")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
-    private UUID id;
+    private Long id;
 
     @Column(name = "user_name")
     private String name;
+
+    @OneToMany(mappedBy = "user")
+    private List<BookMark> bookMarks;
 }

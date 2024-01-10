@@ -1,11 +1,9 @@
-package com.example.jpa.domain;
+package com.example.jpa.domain.storage;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.UUID;
 
 @Data
 @AllArgsConstructor
@@ -14,9 +12,9 @@ import java.util.UUID;
 @Table(name = "file_storage")
 public class FileStorage {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "file_id")
-    private UUID id;
+    private Long id;
     @Column(name = "file_name")
     private String fileName;
 
