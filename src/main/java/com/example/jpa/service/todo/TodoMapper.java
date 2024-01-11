@@ -19,7 +19,7 @@ public class TodoMapper {
                 .build();
     }
 
-    public TodoResponse mapToResponse(Todo todo){
+    public TodoResponse mapToResponse(Todo todo) {
         return TodoResponse.builder()
                 .title(todo.getTitle())
                 .build();

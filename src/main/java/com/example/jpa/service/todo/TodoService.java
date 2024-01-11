@@ -14,6 +14,5 @@ public interface TodoService {
 
     Object updateTodo(Long id, TodoRequest payload);
 
-
     void deleteById(Long id);
 }
