@@ -19,10 +19,5 @@ public class UserResponse {
         this.role = role;
     }
 
-//    public  TodoResponse(User user) {
-//        this.id = user.getId();
-//        this.name = user.getName();
-//        this.role = user.getRole();
-//
-//    }
+
 }

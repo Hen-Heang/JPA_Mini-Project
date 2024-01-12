@@ -3,6 +3,7 @@ package com.example.jpa.domain.category;
 import com.example.jpa.domain.article.Article;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -25,4 +26,9 @@ public class Category {
 
     @ManyToMany(mappedBy = "categories")
     private List<Article>articles;
+
+    @Builder
+    public Category(String name){
+        this.name = name;
+    }
 }
