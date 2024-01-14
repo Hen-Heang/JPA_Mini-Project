@@ -14,16 +14,13 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class ServiceImpl implements TodoService {
+public class TodoServiceImpl implements TodoService {
     private final TodoRepository todoRepository;
     private final TodoMapper todoMapper;
 
     @Override
     public void createTodo(TodoRequest payload) {
         var entity = todoMapper.mapTodoEntity(payload);
-        var todoEntity = Todo.builder()
-                .title(payload.title())
-                .build();
         todoRepository.save(entity);
     }
 
