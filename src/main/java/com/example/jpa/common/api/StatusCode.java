@@ -8,7 +8,6 @@ public enum StatusCode {
     SUCCESS(200, "Success"),
     BAD_GATEWAY(502, "Connection timeout"),
     BAD_REQUEST(400, "Bad request")
-
     ;
 
     private final String message;

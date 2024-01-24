@@ -26,7 +26,6 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public Object getAllCategory() {
         var categoriesList = categoryRepository.findAll();
-
         List<CategoryResponse> categoryResponses = categoriesList.stream()
                 .map(categoryMapper::mapToResponse)
                 .toList();
@@ -38,8 +37,7 @@ public class CategoryServiceImpl implements CategoryService {
 
         return categoryRepository.findById(id)
                 .map(categoryMapper::mapToResponse)
-                .orElseThrow(() -> new CusNotFoundException("Category Not Found!"))
-                ;
+                .orElseThrow(() -> new CusNotFoundException("Category Not Found!"));
     }
 
 //    @Override

@@ -1,6 +1,5 @@
 package com.example.jpa.controller;
 
-
 import com.example.jpa.payload.category.CategoryRequest;
 import com.example.jpa.service.category.CategoryService;
 import lombok.RequiredArgsConstructor;
@@ -28,9 +27,6 @@ public class CategoryController extends AbstractRestController {
         return ok(categoryService.getCategoryById(id));
     }
 
-//    @GetMapping("/search")
-//    public Object searchCategoryByName(String name, @RequestParam(defaultValue = "9") Integer PageNo,
-//                                       @RequestParam(defaultValue = "10")Integer pageSize){
-//        return ok(categoryService.searchCategoryByName(name,PageNo,pageSize));
-//    }
+
+
 }

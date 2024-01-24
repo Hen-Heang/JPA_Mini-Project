@@ -12,6 +12,8 @@ public class CategoryResponse {
     private Long id;
     private String name;
 
+
+
     @Builder
     public CategoryResponse(Long id, String name){
         this.id=id;
