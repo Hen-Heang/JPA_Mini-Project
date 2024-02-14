@@ -41,12 +41,8 @@ public class ProductController extends AbstractRestController{
         return ok();
     }
 
-    @GetMapping("{name}")
-    public Object  getByName(@PathVariable String name){
-        var p = productService.getProductByName(name);
-
-        return ok(p);
+    @GetMapping("name")
+    public Object getProductByName(@RequestParam("name") String name){
+        return ok(productService.getProductByName(name));
     }
-
-
 }

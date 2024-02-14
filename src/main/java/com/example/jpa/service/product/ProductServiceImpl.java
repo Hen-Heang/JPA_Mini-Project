@@ -55,10 +55,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Object getProductByName(String name) {
-        var p = productRepository.findByName(name);
-
-
-        return p;
+        return productRepository.findByName(name);
     }
 
 }

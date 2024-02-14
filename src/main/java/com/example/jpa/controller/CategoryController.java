@@ -26,7 +26,4 @@ public class CategoryController extends AbstractRestController {
     public Object getCategoryById(@PathVariable("id")Long id){
         return ok(categoryService.getCategoryById(id));
     }
-
-
-
 }
