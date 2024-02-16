@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import org.webjars.NotFoundException;
 
 @RestController
-@RequestMapping("api/v1/user")
+@RequestMapping("/api/v1/user")
 @RequiredArgsConstructor
 public class UserController extends AbstractRestController {
     private final UserService userService;

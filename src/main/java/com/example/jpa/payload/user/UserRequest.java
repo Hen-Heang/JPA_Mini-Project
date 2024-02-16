@@ -1,6 +1,5 @@
 package com.example.jpa.payload.user;
 
-import com.example.jpa.domain.user.User;
 import com.example.jpa.enums.Role;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

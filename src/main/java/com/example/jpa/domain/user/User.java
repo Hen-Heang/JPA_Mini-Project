@@ -3,14 +3,13 @@ package com.example.jpa.domain.user;
 import com.example.jpa.domain.bookmark.BookMark;
 import com.example.jpa.enums.Role;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.List;
+import java.util.UUID;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -29,6 +28,7 @@ public class User {
     private Role role;
 
     @OneToMany(mappedBy = "user")
+    @ToString.Exclude
     private List<BookMark> bookMarks;
 
     @Builder
@@ -36,4 +36,6 @@ public class User {
         this.name = name;
         this.role = role;
     }
+
+
 }

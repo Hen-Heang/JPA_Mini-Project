@@ -1,7 +1,10 @@
 package com.example.jpa.payload.user;
 
 import com.example.jpa.enums.Role;
-import lombok.*;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 
 @NoArgsConstructor
