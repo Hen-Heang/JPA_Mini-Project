@@ -3,8 +3,8 @@ package com.example.jpa.payload.category;
 
 import lombok.*;
 
-@Setter
-@Getter
+@Data
+@NoArgsConstructor
 public class CategoryRequest {
     private  String name;
 

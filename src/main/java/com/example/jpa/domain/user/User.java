@@ -37,5 +37,8 @@ public class User {
         this.role = role;
     }
 
+    public UserDTO toDto() {
+        return  new UserDTO(this.id,this.name,this.role);
+    }
 
 }

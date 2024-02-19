@@ -3,6 +3,7 @@ package com.example.jpa.domain.article;
 import com.example.jpa.domain.bookmark.BookMark;
 import com.example.jpa.domain.category.Category;
 import com.example.jpa.domain.comment.Comments;
+import com.example.jpa.domain.user.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,6 +12,9 @@ import lombok.NoArgsConstructor;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
+
+import static org.yaml.snakeyaml.events.Event.ID.Comment;
 
 @Data
 @AllArgsConstructor
@@ -33,6 +37,10 @@ public class Article {
     @Column(name = "article_publish")
     private Boolean published;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
+
     @OneToMany(mappedBy = "article")
     private List<Comments> comments = new ArrayList<>();
 
@@ -46,4 +54,7 @@ public class Article {
     @OneToMany(mappedBy = "article")
     private List<BookMark> bookMarks;
 
+    public ArticleDTO toDto(){
+        return new ArticleDTO(this.id, this.title, this.description, this.published, this.user.toDto(), this.comments.stream().map(Comments::toDto).collect(Collectors.toList()), this.categories.stream().map(Category::toDto).collect(Collectors.toList()));
+    }
 }

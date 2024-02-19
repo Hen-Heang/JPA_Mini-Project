@@ -30,4 +30,8 @@ public class Category {
     public Category(String name){
         this.name = name;
     }
+
+    public CategoryDTO toDto() {
+        return new CategoryDTO(this.id, this.name);
+    }
 }

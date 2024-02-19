@@ -25,4 +25,9 @@ public class Comments {
     @ManyToOne
     @JoinColumn(name = "article_id")
     private Article article;
+
+    public CommentDTO toDto(){
+        return new CommentDTO(this.id, this.caption);
+    }
+
 }

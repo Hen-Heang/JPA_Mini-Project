@@ -14,9 +14,9 @@ import java.util.UUID;
 @Table(name = "file_storage")
 public class FileStorage {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "file_id")
-    private UUID id;
+    private Long id;
     @Column(name = "file_name")
     private String fileName;
 

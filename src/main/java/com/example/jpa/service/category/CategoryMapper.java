@@ -15,7 +15,7 @@ public class CategoryMapper {
 
     public Category mapCategoryEntity(CategoryRequest categoryRequest){
         return Category.builder()
-                .name(categoryRequest.name())
+                .name(categoryRequest.getName())
                 .build();
     }
     public CategoryResponse mapToResponse(Category category){
@@ -24,4 +24,5 @@ public class CategoryMapper {
                 .name(category.getName())
                 .build();
     }
+
 }
