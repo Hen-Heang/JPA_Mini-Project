@@ -1,7 +1,11 @@
 package com.example.jpa.payload.category;
 
 
-public record CategoryRequest (
-         String name
-){
+import lombok.*;
+
+@Setter
+@Getter
+public class CategoryRequest {
+    private  String name;
+
 }

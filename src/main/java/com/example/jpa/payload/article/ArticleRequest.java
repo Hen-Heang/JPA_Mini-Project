@@ -15,7 +15,7 @@ public class ArticleRequest {
     private String title;;
     private String description;
     private Set<CategoryRequest> categoryRequests;
-    private UUID userId;
+    private Long userId;
     private Boolean published =false;
 
 

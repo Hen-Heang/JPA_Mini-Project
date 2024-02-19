@@ -1,5 +1,6 @@
 package com.example.jpa.service.article;
 
+import com.example.jpa.common.api.ApiResponse;
 import com.example.jpa.domain.article.ArticleRepository;
 import com.example.jpa.domain.category.Category;
 import com.example.jpa.domain.category.CategoryRepository;
@@ -33,23 +34,24 @@ public class ArticleServiceImpl implements ArticleService {
         }
 
 
-//        List<Category>categories = new ArrayList<>();
-//        for (CategoryRequest categoryRequest : articleRequest.getCategoryRequests()){
-//            if (categoryRequest.getName() == null || categoryRequest.getName().isBlank()){
-//                throw new NullExceptionClass("Category can not be empty or blank", "Article");
-//            }
-//            Category category = categoryRepository.findByName(categoryRequest.getName()).orElseThrow(()
-//                    -> new CusNotFoundException("Category not found"));
-//            categories.add(category);
-//        }
+        List<Category> categories = new ArrayList<>();
+        for (CategoryRequest categoryRequest : articleRequest.getCategoryRequests()){
+            if (categoryRequest.getName() == null || categoryRequest.getName().isBlank()){
+                throw new NullExceptionClass("Category can not be empty or blank", "Article");
+            }
+            Category category = categoryRepository.findByName(categoryRequest.getName()).orElseThrow(()
+                    -> new CusNotFoundException("Category not found"));
+            categories.add(category);
+        }
 
-//
-//        User user = userRepository.findById(articleRequest.getUserId()).orElseThrow(() -> new CusNotFoundException("User not found"));
-//        return ApiResponse.<ArticleDto>builder()
-//                .message("successfully create article")
-//                .payload(articleRepository.save(articleRequest.toEntity(user, categories)).toDto())
-//                .status(HttpStatus.CREATED)
-//                .build();
+
+        User user = userRepository.findById(articleRequest.getUserId()).orElseThrow(()
+                -> new CusNotFoundException("User not found"));
+        return ApiResponse.<ArticleDto>builder()
+                .message("successfully create article")
+                .payload(articleRepository.save(articleRequest.toEntity(user, categories)).toDto())
+                .status(HttpStatus.CREATED)
+                .build();
 
     }
 }
