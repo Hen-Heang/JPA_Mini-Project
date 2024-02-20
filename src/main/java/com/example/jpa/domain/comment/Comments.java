@@ -26,8 +26,8 @@ public class Comments {
     @JoinColumn(name = "article_id")
     private Article article;
 
-    public CommentDTO toDto(){
-        return new CommentDTO(this.id, this.caption);
-    }
+//    public CommentDTO toDto(){
+//        return new CommentDTO(this.id, this.caption);
+//    }
 
 }

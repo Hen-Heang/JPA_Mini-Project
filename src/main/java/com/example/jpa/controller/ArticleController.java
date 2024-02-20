@@ -16,10 +16,8 @@ private final ArticleService articleService;
         articleService.createArticle(articleRequest);
         return ok();
         }
-
         @GetMapping("/all")
-    public ResponseEntity<?> getAllArticle(){
-        return ok(  articleService.getAllArticle());
+    public Object getAllArticle(){
+        return ok(articleService.getAllArticle());
         }
-
 }

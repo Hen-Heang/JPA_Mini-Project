@@ -1,6 +1,5 @@
 package com.example.jpa.payload.article;
 
-import com.example.jpa.payload.category.CategoryRequest;
 import com.example.jpa.payload.category.CategoryResponse;
 import lombok.Builder;
 import lombok.Getter;

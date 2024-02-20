@@ -1,6 +1,7 @@
 package com.example.jpa.domain.category;
 
 import com.example.jpa.domain.article.Article;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -13,25 +14,23 @@ import java.util.UUID;
 @Setter
 @Getter
 @Entity
-@Table(name = "categories")
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JoinColumn(name = "category_id")
     private Long id;
 
-    @Column(name = "name")
+    @Column(name = "category_name", unique = true)
     private String name;
 
-    @ManyToMany(mappedBy = "categories")
-    private List<Article>articles;
+//    @JsonManagedReference
+//    @ManyToMany( mappedBy = "categories")
+//    private List<Article> articles;
 
     @Builder
     public Category(String name){
         this.name = name;
     }
 
-    public CategoryDTO toDto() {
-        return new CategoryDTO(this.id, this.name);
     }
-}
+
