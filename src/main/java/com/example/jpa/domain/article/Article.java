@@ -12,7 +12,6 @@ import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Setter
 @Getter
@@ -42,7 +41,7 @@ public class Article {
     private List<Comments> comments = new ArrayList<>();
 
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "article_categories",
             joinColumns = @JoinColumn(name = "article_id"),
@@ -52,6 +51,7 @@ public class Article {
 
     @OneToMany(mappedBy = "article")
     private List<BookMark> bookmarks;
+
     @Builder
     public Article(Long id, String title, String description, Boolean published, User user, List<Comments> comments, List<Category> categories, List<BookMark> bookMarks) {
         this.id = id;

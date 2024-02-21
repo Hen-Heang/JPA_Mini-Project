@@ -34,18 +34,10 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public Object getCategoryById(Long id) {
-
         return categoryRepository.findById(id)
                 .map(categoryMapper::mapToResponse)
                 .orElseThrow(() -> new CusNotFoundException("Category Not Found!"));
     }
-
-//    @Override
-//    public Object searchCategoryByName(String name, Integer pageNo, Integer pageSize) {
-//       Pageable = (Pageable) PageRequest.of(pageNo,pageSize);
-//        Page<CategoryRequest>categoryRequests = categoryRepository.findByNameContainingIgnoreCase(pageable,name).map(Category::)
-//        return null;
-//    }
 
 
 }

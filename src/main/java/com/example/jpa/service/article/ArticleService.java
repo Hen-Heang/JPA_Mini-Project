@@ -8,4 +8,12 @@ public interface ArticleService {
     void createArticle(ArticleRequest articleRequest);
 
     Object getAllArticle();
+
+    Object getArticleById(Long id);
+
+    Object getArticleByTitle(String title);
+
+    void updateArticle(Long id, ArticleRequest articleRequest);
+
+    void deleteArticle(Long id);
 }

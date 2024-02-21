@@ -23,9 +23,7 @@ public class Category {
     @Column(name = "category_name", unique = true)
     private String name;
 
-//    @JsonManagedReference
-//    @ManyToMany( mappedBy = "categories")
-//    private List<Article> articles;
+
 
     @Builder
     public Category(String name){

@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -36,7 +37,7 @@ public class ArticleServiceImpl implements ArticleService {
             throw new NullExceptionClass("description can not be blank or empty", "Article");
         }
 
-                List<Category> categories = new ArrayList<>();
+        List<Category> categories = new ArrayList<>();
         for (CategoryRequest categoryRequest : articleRequest.getCategoryRequests()) {
             if (categoryRequest.getName() == null || categoryRequest.getName().isBlank()) {
                 throw new NullExceptionClass("Category can not be empty or blank", "Article");
@@ -44,7 +45,7 @@ public class ArticleServiceImpl implements ArticleService {
             Category category = categoryRepository.findByName(categoryRequest.getName()).orElseThrow(()
 
                     -> new CusNotFoundException("Category not found"));
-            System.out.println("Category:"+category);
+            System.out.println("Category:" + category);
             categories.add(category);
         }
         User user = userRepository.findById(articleRequest.getUserId())
@@ -69,4 +70,32 @@ public class ArticleServiceImpl implements ArticleService {
         return new ArticleMainRes(articleResponseList);
     }
 
+
+    @Override
+    public ArticleResponse getArticleById(Long id) {
+        Optional<Article> optionalArticle = articleRepository.findById(id); // Use Optional for better handling
+        return optionalArticle.map(articleMapper::mapToResponse)
+                .orElseThrow(() -> new CusNotFoundException("Article Not Found!"));
+    }
+
+    @Override
+    public Object getArticleByTitle(String title) {
+        Article article = articleRepository.findByTitle(title)
+                .orElseThrow(() -> new CusNotFoundException("Article with title: " + title + " not found"));
+        return articleMapper.mapToResponse(article);
+    }
+
+    @Override
+    public void updateArticle(Long id, ArticleRequest articleRequest) {
+        Article article = articleRepository.findById(id)
+                .orElseThrow(() ->
+                        new CusNotFoundException("Article Not Found with id: " + id));
+        articleMapper.updateArticleEntity(article, articleRequest);
+        articleRepository.save(article);
+    }
+
+    @Override
+    public void deleteArticle(Long id) {
+        articleRepository.deleteById(id);
+    }
 }
