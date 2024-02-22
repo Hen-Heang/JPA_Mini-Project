@@ -4,7 +4,7 @@ import com.example.jpa.domain.article.Article;
 import com.example.jpa.domain.article.ArticleRepository;
 import com.example.jpa.domain.category.Category;
 import com.example.jpa.domain.category.CategoryRepository;
-import com.example.jpa.domain.todo.Todo;
+import com.example.jpa.domain.comment.Comments;
 import com.example.jpa.domain.user.User;
 import com.example.jpa.domain.user.UserRepository;
 import com.example.jpa.exception.CusNotFoundException;
@@ -12,8 +12,8 @@ import com.example.jpa.payload.article.ArticleRequest;
 import com.example.jpa.payload.article.ArticleResponse;
 import com.example.jpa.payload.category.CategoryRequest;
 import com.example.jpa.payload.category.CategoryResponse;
-import com.example.jpa.payload.todo.TodoRequest;
-import lombok.RequiredArgsConstructor;
+import com.example.jpa.payload.comment.CommentRequest;
+import com.example.jpa.payload.comment.CommentResponse;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -33,12 +33,20 @@ public class ArticleMapper {
     }
 
     private CategoryResponse mapCategoryToCategoryResponse(Category category) {
-        // Implement the mapping logic here
         return new CategoryResponse(
                 category.getId(),
                 category.getName()
         );
     }
+
+    public Comments mapCommentEntity(CommentRequest commentRequest, Article article) {
+        return  Comments.builder()
+                .caption(commentRequest.getCaption())
+                .article(article) // Assuming your Comments entity has a field linking to the Article
+                .build();
+    }
+
+
 
     public ArticleResponse mapToResponse(Article article) {
 
@@ -74,4 +82,22 @@ public class ArticleMapper {
         article.setUser(user);
         article.setPublished(articleRequest.getPublished());
     }
+
+    public CommentResponse mapCommentToCommentResponse(Comments comment) {
+        return CommentResponse.builder()
+                .id(comment.getId())
+                .description(comment.getCaption())
+                .build();
+    }
+
+    public CommentResponse mapCommentToResponse(Article article) {
+        List<CommentResponse> commentResponses = article.getComments().stream()
+                .map(this::mapCommentToCommentResponse)
+                .toList();
+        return CommentResponse.builder()
+                .id(article.getId())
+                .description(article.getTitle())
+                .build();
+    }
+
 }

@@ -5,7 +5,6 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 import java.util.List;
 
 @Getter
@@ -13,19 +12,19 @@ import java.util.List;
 @NoArgsConstructor
 public class ArticleResponse {
     private Long id;
-    private String title;;
+    private String title;
     private String description;
     private List<CategoryResponse> categoryResponses;
     private Long userId;
-    private Boolean published =false;
+    private Boolean published = false;
 
     @Builder
-    public ArticleResponse(Long id,String title, String description, List<CategoryResponse> categoryResponses, Long userId, Boolean published){
+    public ArticleResponse(Long id, String title, String description, List<CategoryResponse> categoryResponses, Long userId, Boolean published) {
         this.id = id;
-        this.title=title;
-        this.description=description;
-        this.categoryResponses=categoryResponses;
-        this.userId=userId;
-        this.published=published;
+        this.title = title;
+        this.description = description;
+        this.categoryResponses = categoryResponses;
+        this.userId = userId;
+        this.published = published;
     }
 }

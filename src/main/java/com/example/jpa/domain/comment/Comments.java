@@ -2,16 +2,14 @@ package com.example.jpa.domain.comment;
 
 import com.example.jpa.domain.article.Article;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-import java.util.UUID;
 
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Getter
+@Setter
 @Table(name = "comment")
 public class Comments {
     @Id
@@ -26,8 +24,10 @@ public class Comments {
     @JoinColumn(name = "article_id")
     private Article article;
 
-//    public CommentDTO toDto(){
-//        return new CommentDTO(this.id, this.caption);
-//    }
+@Builder
+    public Comments(String caption, Article article){
+    this.caption=caption;
+    this.article=article;
+}
 
 }

@@ -1,8 +1,11 @@
 package com.example.jpa.controller;
 
 import com.example.jpa.payload.article.ArticleRequest;
+import com.example.jpa.payload.comment.CommentRequest;
 import com.example.jpa.service.article.ArticleService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,10 +20,12 @@ private final ArticleService articleService;
         return ok();
         }
     @GetMapping("/all")
-    public Object getAllArticle() {
-        return ok(articleService.getAllArticle());
+    public Object getAllArticle(
+            @RequestParam(name = "page_number", defaultValue = "0", required = false)Integer pageNumber,
+            @RequestParam(name = "page_size", defaultValue = "10", required = false)Integer sizeNumber) {
+        Pageable pageable = PageRequest.of(pageNumber,sizeNumber);
+        return ok(articleService.getAllArticle(pageable));
     }
-
 
     @GetMapping("/{id}")
     public Object getArticleById(@PathVariable("id") Long id){
@@ -39,11 +44,21 @@ private final ArticleService articleService;
         return ok();
 }
 
-
 @DeleteMapping("/{id}")
     public Object deleteArticle(@PathVariable("id") Long id){
         articleService.deleteArticle(id);
         return ok();
 }
+
+@PostMapping("/comment")
+    public Object postComment(@RequestBody CommentRequest commentRequest){
+    articleService.postComment(commentRequest);
+        return ok();
+}
+
+//@GetMapping("/{id}")
+//    public Object getCommentByArticleById(@PathVariable("id") Long id){
+//        return ok(articleService.getCommentByArticleId(id));
+//}
 
 }

@@ -1,13 +1,15 @@
 package com.example.jpa.service.article;
 
 import com.example.jpa.payload.article.ArticleRequest;
+import com.example.jpa.payload.comment.CommentRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
 public interface ArticleService {
     void createArticle(ArticleRequest articleRequest);
 
-    Object getAllArticle();
+    Object getAllArticle(Pageable pageable);
 
     Object getArticleById(Long id);
 
@@ -16,4 +18,8 @@ public interface ArticleService {
     void updateArticle(Long id, ArticleRequest articleRequest);
 
     void deleteArticle(Long id);
+
+    void postComment(CommentRequest commentRequest);
+
+//    Object getCommentByArticleId(Long id);
 }
