@@ -5,8 +5,8 @@ import com.example.jpa.domain.article.Article;
 import com.example.jpa.domain.article.ArticleRepository;
 import com.example.jpa.domain.category.Category;
 import com.example.jpa.domain.category.CategoryRepository;
-import com.example.jpa.domain.comment.Comments;
 import com.example.jpa.domain.comment.CommentRepository;
+import com.example.jpa.domain.comment.Comments;
 import com.example.jpa.domain.user.User;
 import com.example.jpa.domain.user.UserRepository;
 import com.example.jpa.exception.CusNotFoundException;
@@ -35,7 +35,6 @@ public class ArticleServiceImpl implements ArticleService {
     private final ArticleMapper articleMapper;
     private final CommentRepository commentRepository;
 
-
     @Override
     public void createArticle(ArticleRequest articleRequest) {
         if (articleRequest.getTitle() == null || articleRequest.getTitle().isBlank()) {
@@ -49,9 +48,7 @@ public class ArticleServiceImpl implements ArticleService {
                 throw new NullExceptionClass("Category can not be empty or blank", "Article");
             }
             Category category = categoryRepository.findByName(categoryRequest.getName()).orElseThrow(()
-
                     -> new CusNotFoundException("Category not found"));
-            System.out.println("Category:" + category);
             categories.add(category);
         }
         User user = userRepository.findById(articleRequest.getUserId())
@@ -66,28 +63,28 @@ public class ArticleServiceImpl implements ArticleService {
         articleRepository.save(article);
     }
 
-
     @Override
     public Object getAllArticle(Pageable pageable) {
         List<Article> articleList = articleRepository.findAll();
-        Page<Article>articles = articleRepository.findAll(pageable);
+        Page<Article> articles = articleRepository.findAll(pageable);
         List<ArticleResponse> articleResponseList = articleList.stream()
                 .map(articleMapper::mapToResponse)
                 .collect(Collectors.toList());
-        return new ArticleMainRes(articleResponseList,new Pagination(articles));
+        return new ArticleMainRes(articleResponseList, new Pagination(articles));
     }
-
 
     @Override
     public ArticleResponse getArticleById(Long id) {
         Optional<Article> optionalArticle = articleRepository.findById(id); // Use Optional for better handling
         return optionalArticle.map(articleMapper::mapToResponse)
                 .orElseThrow(() -> new CusNotFoundException("Article Not Found!"));
+
     }
 
     @Override
     public Object getArticleByTitle(String title) {
-        Article article = articleRepository.findByTitle(title)
+        String articleLowerCase = title.toLowerCase();
+        Article article = articleRepository.findByTitle(articleLowerCase)
                 .orElseThrow(() -> new CusNotFoundException("Article with title: " + title + " not found"));
         return articleMapper.mapToResponse(article);
     }
@@ -110,20 +107,24 @@ public class ArticleServiceImpl implements ArticleService {
     public void postComment(CommentRequest commentRequest) {
         Article article = articleRepository.findById(commentRequest.getArticleId())
                 .orElseThrow(() -> new CusNotFoundException("Article not found with id: " + commentRequest.getArticleId()));
-        System.out.println("Id"+article);
+        System.out.println("Id" + article);
         Comments comment = articleMapper.mapCommentEntity(commentRequest, article);
         commentRepository.save(comment);
     }
 
-//    @Override
-//    public Object getCommentByArticleId(Long id) {
-//        return null;
-//    }
+    @Override
+    public Object getCommentByArticleId(Long articleId) {
+        Optional<Comments> comments = commentRepository.findCommentsByArticleId(articleId);
+        return comments.map(articleMapper::mapCommentToCommentResponse)
+                .orElseThrow(() -> new CusNotFoundException("Article Not Found!"));
+    }
 
-//    @Override
-//    public Object getCommentByArticleId(Long id) {
-//        Article article = articleRepository.findById(id)
-//                .orElseThrow(()-> new CusNotFoundException("Article Not Found"));
-//        return commentRepository.findAllByArticleId(article.getId());
-//    }
+    @Override
+    public Object getArticleIsPublished(Pageable pageable) {
+        Page<Article> articlePage = articleRepository.findArticleByPublished(pageable, true);
+        List<ArticleResponse> articleResponseList = articlePage.getContent().stream()
+                .map(articleMapper::mapToResponse)
+                .collect(Collectors.toList());
+        return new ArticleMainRes(articleResponseList, new Pagination(articlePage));
+    }
 }

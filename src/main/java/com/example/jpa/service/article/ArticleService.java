@@ -21,5 +21,7 @@ public interface ArticleService {
 
     void postComment(CommentRequest commentRequest);
 
-//    Object getCommentByArticleId(Long id);
+    Object getCommentByArticleId(Long articleId);
+
+    Object getArticleIsPublished(Pageable pageable);
 }

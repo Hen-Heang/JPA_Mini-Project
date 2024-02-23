@@ -22,4 +22,8 @@ public class CategoryMapper {
                 .name(category.getName())
                 .build();
     }
+
+    public void updateCategoryEntity(Category category, CategoryRequest categoryRequest){
+        category.setName(categoryRequest.getName());
+    }
 }

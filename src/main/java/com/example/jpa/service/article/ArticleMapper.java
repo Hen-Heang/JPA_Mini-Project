@@ -42,18 +42,16 @@ public class ArticleMapper {
     public Comments mapCommentEntity(CommentRequest commentRequest, Article article) {
         return  Comments.builder()
                 .caption(commentRequest.getCaption())
-                .article(article) // Assuming your Comments entity has a field linking to the Article
+                .article(article)
                 .build();
     }
 
 
 
     public ArticleResponse mapToResponse(Article article) {
-
         List<CategoryResponse> categoryResponses = article.getCategories().stream()
                 .map(this::mapCategoryToCategoryResponse)
                 .collect(Collectors.toList());
-
         return ArticleResponse.builder()
                 .id(article.getId())
                 .title(article.getTitle())
@@ -65,7 +63,6 @@ public class ArticleMapper {
     }
 
     public void updateArticleEntity(Article article, ArticleRequest articleRequest) {
-
         article.setTitle(articleRequest.getTitle());
         article.setDescription(articleRequest.getDescription());
 
@@ -87,16 +84,6 @@ public class ArticleMapper {
         return CommentResponse.builder()
                 .id(comment.getId())
                 .description(comment.getCaption())
-                .build();
-    }
-
-    public CommentResponse mapCommentToResponse(Article article) {
-        List<CommentResponse> commentResponses = article.getComments().stream()
-                .map(this::mapCommentToCommentResponse)
-                .toList();
-        return CommentResponse.builder()
-                .id(article.getId())
-                .description(article.getTitle())
                 .build();
     }
 

@@ -56,9 +56,17 @@ private final ArticleService articleService;
         return ok();
 }
 
-//@GetMapping("/{id}")
-//    public Object getCommentByArticleById(@PathVariable("id") Long id){
-//        return ok(articleService.getCommentByArticleId(id));
-//}
+@GetMapping("/comment/{id}")
+    public Object getCommentByArticleById(@PathVariable("id") Long articleId){
+        return ok(articleService.getCommentByArticleId(articleId));
+}
 
+@GetMapping("/isPublished")
+    public Object getArticleIsPublished(
+       @RequestParam(name = "page_number", defaultValue = "0", required = false)Integer pageNumber,
+       @RequestParam(name = "page_size", defaultValue = "10", required = false)Integer sizeNumber
+){
+        Pageable pageable = PageRequest.of(pageNumber,sizeNumber);
+        return ok(articleService.getArticleIsPublished(pageable));
+}
 }
