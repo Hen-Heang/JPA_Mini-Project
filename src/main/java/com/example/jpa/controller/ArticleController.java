@@ -1,6 +1,6 @@
 package com.example.jpa.controller;
 
-import com.example.jpa.payload.article.ArticleRequest;
+import com.example.jpa.payload.articles.ArticleRequest;
 import com.example.jpa.payload.comment.CommentRequest;
 import com.example.jpa.service.article.ArticleService;
 import lombok.RequiredArgsConstructor;

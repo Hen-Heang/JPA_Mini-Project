@@ -1,6 +1,7 @@
 package com.example.jpa.exception;
 
 
+
 import com.example.jpa.common.api.ApiResponse;
 import com.example.jpa.common.api.ApiStatus;
 import com.example.jpa.common.api.EmptyJsonResponse;
@@ -30,9 +31,9 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         return super.handleHttpRequestMethodNotSupported(ex, headers, status, request);
     }
 
-    @ExceptionHandler(CusNotFoundException.class)
+    @ExceptionHandler(BusinessException.class)
     protected ResponseEntity<Object> handleEntityNotFound(
-            CusNotFoundException ex
+            BusinessException ex
     ) {
 
         return buildResponseEntity(new ApiStatus(NOT_FOUND.value(), ex.getMessage()));

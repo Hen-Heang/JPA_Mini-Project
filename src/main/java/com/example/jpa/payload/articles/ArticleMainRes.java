@@ -1,4 +1,4 @@
-package com.example.jpa.payload.article;
+package com.example.jpa.payload.articles;
 
 import com.example.jpa.common.Pagination;
 

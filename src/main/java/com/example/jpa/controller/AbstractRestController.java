@@ -38,8 +38,7 @@ public abstract class AbstractRestController {
 
     }
 
-    public <T> ResponseEntity<ApiResponse<?>> buildResponse(HttpStatus status)
-    {
+    public <T> ResponseEntity<ApiResponse<?>> buildResponse(HttpStatus status) {
 
         return buildResponse(status, new EmptyJsonResponse());
 

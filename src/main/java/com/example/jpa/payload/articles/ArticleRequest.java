@@ -1,4 +1,4 @@
-package com.example.jpa.payload.article;
+package com.example.jpa.payload.articles;
 
 import com.example.jpa.payload.category.CategoryRequest;
 import com.fasterxml.jackson.annotation.JsonProperty;

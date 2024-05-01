@@ -1,6 +1,6 @@
 package com.example.jpa.service.article;
 
-import com.example.jpa.payload.article.ArticleRequest;
+import com.example.jpa.payload.articles.ArticleRequest;
 import com.example.jpa.payload.comment.CommentRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;

@@ -10,7 +10,7 @@ public class OpenApiConfig {
     @Bean
     public OpenAPI openAPI() {
         return new OpenAPI()
-                .info(new Info().title("API Test")
+                .info(new Info().title("Multiple API")
                         .description("MY Api")
                         .version("2.0")
                 );
