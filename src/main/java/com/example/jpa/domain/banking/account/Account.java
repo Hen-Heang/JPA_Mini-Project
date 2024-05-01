@@ -1,12 +1,16 @@
 package com.example.jpa.domain.banking.account;
 
 
+import com.example.jpa.domain.banking.account_type.AccountType;
+import com.example.jpa.domain.banking.card.Card;
+import com.example.jpa.domain.banking.user.UserAccount;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Setter
 @Getter
@@ -32,6 +36,17 @@ public class Account {
 
     @Column(nullable = false)
     private BigDecimal transferLimit;
+
+    @ManyToOne
+    private AccountType accountType;
+
+    @OneToMany(mappedBy = "account")
+    private List<UserAccount> userAccountList;
+
+    @OneToOne
+    private Card card;
+
+    private Boolean isHidden; // uses to hide account on mobile app
 
 
 
