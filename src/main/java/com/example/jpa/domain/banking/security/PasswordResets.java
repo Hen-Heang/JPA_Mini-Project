@@ -7,12 +7,13 @@ import lombok.Setter;
 
 import java.time.LocalDateTime;
 
-@NoArgsConstructor
-@Setter
 @Getter
+@Setter
+@NoArgsConstructor
 @Entity
 @Table(name = "password_resets")
 public class PasswordResets {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -25,6 +26,5 @@ public class PasswordResets {
 
     @Column(nullable = false)
     private LocalDateTime expiredAt;
-
 
 }

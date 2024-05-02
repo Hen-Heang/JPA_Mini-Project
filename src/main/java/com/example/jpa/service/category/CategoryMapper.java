@@ -10,12 +10,12 @@ import org.springframework.stereotype.Component;
 public class CategoryMapper {
     public CategoryMapper(CategoryRepository categoryRepository) {
     }
-
     public Category mapCategoryEntity(CategoryRequest categoryRequest){
         return Category.builder()
                 .name(categoryRequest.getName())
                 .build();
     }
+
     public CategoryResponse mapToResponse(Category category){
         return CategoryResponse.builder()
                 .id(category.getId())
@@ -25,5 +25,6 @@ public class CategoryMapper {
 
     public void updateCategoryEntity(Category category, CategoryRequest categoryRequest){
         category.setName(categoryRequest.getName());
+
     }
 }

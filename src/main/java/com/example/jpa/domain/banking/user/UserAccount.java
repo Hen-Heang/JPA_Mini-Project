@@ -1,6 +1,5 @@
 package com.example.jpa.domain.banking.user;
 
-
 import com.example.jpa.domain.banking.account.Account;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -10,27 +9,25 @@ import lombok.Setter;
 import java.time.LocalDateTime;
 
 @NoArgsConstructor
-@Setter
 @Getter
+@Setter
 @Entity
-@Table(name = "user_account")
-
+@Table(name = "user_accounts")
 public class UserAccount {
-        @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
-        private Long id;
 
-        @ManyToOne
-        private User user;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-        @ManyToOne(cascade = CascadeType.PERSIST)
-        private Account account;
+    @ManyToOne
+    private User user;
 
-        private Boolean isDeleted; // manage delete status (admin want to disable or remove an account)
-        private Boolean isBlocked; // manage block status (when there is bad action happened)
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    private Account account;
 
-        private LocalDateTime createdAt;
+    private Boolean isDeleted; // manage delete status (admin want to disable or remove an account)
+    private Boolean isBlocked; // manage block status (when there is bad action happened)
 
-
+    private LocalDateTime createdAt;
 
 }

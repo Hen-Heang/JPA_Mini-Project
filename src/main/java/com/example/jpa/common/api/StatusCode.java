@@ -6,7 +6,7 @@ import lombok.Getter;
 public enum StatusCode {
 
     SUCCESS(200, "Success"),
-    USER_NOT_FOUND(453, "User is not found"),
+    USER_NOT_FOUND(453, "UserBanking is not found"),
     USER_DISABLED(453, "Biller account was deactivated. Please contact: 093 815 074"),
     BAD_CREDENTIALS(452, "Password is incorrect"),
     SECRET_INVALID(452, "Secret is incorrect"),

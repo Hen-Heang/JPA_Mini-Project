@@ -1,6 +1,5 @@
 package com.example.jpa.domain.banking.role;
 
-
 import com.example.jpa.domain.banking.security.Authority;
 import com.example.jpa.domain.banking.user.User;
 import jakarta.persistence.*;
@@ -14,19 +13,19 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-@Table(name = "role")
-public class Role implements GrantedAuthority{
+@Table(name = "roles")
+public class Role {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     private String name;
-    @ManyToMany
-    private List<Authority> authorities;
 
     @ManyToMany(mappedBy = "roles")
     private List<User> users;
 
-
+    @ManyToMany
+    private List<Authority> authorities;
 
 }

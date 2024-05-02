@@ -1,6 +1,6 @@
 package com.example.jpa.domain.banking.security;
 
-import com.example.jpa.domain.user.User;
+import com.example.jpa.domain.banking.user.User;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,6 +14,7 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "email_verification_tokens")
 public class EmailVerificationToken {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -26,4 +27,5 @@ public class EmailVerificationToken {
 
     @OneToOne
     private User user;
+
 }

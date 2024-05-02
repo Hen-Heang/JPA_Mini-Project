@@ -12,7 +12,7 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-public class UserRequest {
+public class UserCreateRequest {
         @NotNull(message = "Pin is required")
         @Max(value = 9999, message = "Pin must be 4 digits")
         @Positive(message = "Pin must be a positive number")

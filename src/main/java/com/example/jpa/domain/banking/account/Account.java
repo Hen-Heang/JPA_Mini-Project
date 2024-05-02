@@ -1,6 +1,5 @@
 package com.example.jpa.domain.banking.account;
 
-
 import com.example.jpa.domain.banking.account_type.AccountType;
 import com.example.jpa.domain.banking.card.Card;
 import com.example.jpa.domain.banking.user.UserAccount;
@@ -12,12 +11,13 @@ import lombok.Setter;
 import java.math.BigDecimal;
 import java.util.List;
 
-@Setter
-@Getter
 @NoArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "accounts")
 public class Account {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -37,6 +37,7 @@ public class Account {
     @Column(nullable = false)
     private BigDecimal transferLimit;
 
+    // Account has a type
     @ManyToOne
     private AccountType accountType;
 
@@ -47,9 +48,5 @@ public class Account {
     private Card card;
 
     private Boolean isHidden; // uses to hide account on mobile app
-
-
-
-
 
 }
